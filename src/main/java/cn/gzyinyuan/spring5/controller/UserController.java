@@ -1,0 +1,28 @@
+package cn.gzyinyuan.spring5.controller;
+
+import cn.gzyinyuan.spring5.entity.User;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.server.ServerResponse;
+import reactor.core.publisher.Mono;
+
+/**
+ * Created by DT人 on 2017/10/9 20:49.
+ */
+//@RestController("/api/v2")
+public class UserController {
+
+    public Mono<ServerResponse> handlerGetUsers() {
+        return WebClient.create("http://localhost:9000").get().uri("/api/user")
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange().flatMap(resp -> ServerResponse.ok().body(resp.bodyToFlux(User.class), User.class));
+    }
+
+    @GetMapping("/user/{id}")
+    public Mono<ServerResponse> handleGetUserById(@PathVariable String id) {
+        return WebClient.create("http://localhost:9000").get().uri("/api/user/" + id)
+                .accept(MediaType.APPLICATION_JSON).exchange().flatMap(resp -> ServerResponse.ok().body(resp.bodyToMono(User.class), User.class));
+    }
+ }

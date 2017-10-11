@@ -20,6 +20,14 @@ public class UserController {
                 .exchange().flatMap(resp -> ServerResponse.ok().body(resp.bodyToFlux(User.class), User.class));
     }
 
+    /**
+     * flatMap的使用例子
+     * {{1,2}，{3,4}，{5,6}}  - > flatMap  - > {1,2,3,4,5,6}
+     *
+     * {'a'，'b'}，{'c'，'d'}，{'e'，'f'}}  - > flatMap  - > {'a'，'b'，'c' D”， 'E'， 'F'}
+     * @param id
+     * @return
+     */
     @GetMapping("/user/{id}")
     public Mono<ServerResponse> handleGetUserById(@PathVariable String id) {
         return WebClient.create("http://localhost:9000").get().uri("/api/user/" + id)

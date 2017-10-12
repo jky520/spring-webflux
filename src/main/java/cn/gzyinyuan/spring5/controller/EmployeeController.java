@@ -42,7 +42,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/reactive/employee/{id}")
-    public Mono<Employee> get(@PathVariable Long id) {
+    public Mono<Employee> get(@PathVariable String id) {
         return employeeRepository.findById(id);
     }
 
@@ -54,7 +54,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/reactive/employee/{id}")
-    public Mono<Void> delete(@PathVariable Long id) {
+    public Mono<Void> delete(@PathVariable String id) {
         return employeeRepository.deleteById(id);
     }
 

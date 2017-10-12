@@ -7,6 +7,6 @@ import org.springframework.data.repository.reactive.ReactiveCrudRepository;
  * 数据持久层
  * Created by DT人 on 2017/10/11 17:26.
  */
-public interface EmployeeRepository extends ReactiveCrudRepository<Employee, Long> {
+public interface EmployeeRepository extends ReactiveCrudRepository<Employee, String> {
 
 }

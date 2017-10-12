@@ -11,4 +11,4 @@ spring:
     rest:
       base-path: /api
 #    mongodb:
-#      uri: mongodb://simon:123456@192.168.150.128:27017/MongoDemo
+#      uri: mongodb://root:root@127.0.0.1:27017/db_spring5

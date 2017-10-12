@@ -2,10 +2,11 @@ package cn.gzyinyuan.spring5.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Version;
 
 /**
@@ -14,18 +15,19 @@ import javax.persistence.Version;
  */
 @Data
 @Entity
+//@Document
 public class Employee {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private String id;
     private String firstName;
     private String lastName;
     private String description;
 
     @Version
     @JsonIgnore
-    private Long version;
+    private String version;
 
     private Employee() {
     }
